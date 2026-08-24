@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Pulse — 2026-08-24</title>
+<meta name="description" content="Databricks open-sources a coding-agent meta-harness">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#EEF1F4; --surface:#FBFCFD; --ink:#151A20; --ink-soft:#3D4752;
+  --muted:#68737F; --rule:#D2DAE2; --accent:#B0560F; --accent-soft:#F3E6DA;
+  --verdict:#9A3524; --verdict-soft:#F6E4E0;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#12161B; --surface:#181D24; --ink:#E6EBF0; --ink-soft:#BAC4CE;
+  --muted:#8895A2; --rule:#2A323B; --accent:#E89049; --accent-soft:#2E2117;
+  --verdict:#E28170; --verdict-soft:#2E1B17;
+}}
+:root[data-theme="dark"]{
+  --ground:#12161B; --surface:#181D24; --ink:#E6EBF0; --ink-soft:#BAC4CE;
+  --muted:#8895A2; --rule:#2A323B; --accent:#E89049; --accent-soft:#2E2117;
+  --verdict:#E28170; --verdict-soft:#2E1B17;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink-soft);
+  font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:44rem;margin:0 auto;padding:2.5rem 1.25rem 5rem}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h1,h2,h3,.mono,.chip,.label{font-family:"Archivo",-apple-system,sans-serif}
+.mono,.metric,.handle,.stars,.label,.chip{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:1rem;margin-bottom:2rem}
+.brand{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.brand b{color:var(--accent)}
+h1{font-size:clamp(1.9rem,6vw,2.6rem);font-weight:700;letter-spacing:-.035em;
+  line-height:1.08;margin:.9rem 0 0;color:var(--ink);text-wrap:balance}
+.lede{margin:.85rem 0 0;color:var(--ink-soft);text-wrap:pretty}
+
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+.chip{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  padding:.45rem .8rem;border:1px solid var(--rule);background:transparent;
+  color:var(--muted);cursor:pointer;border-radius:2px;transition:.15s}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.label{font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 1rem}
+section{margin-bottom:2.75rem}
+section[hidden]{display:none}
+
+.xitem{border-left:2px solid var(--accent);padding-left:1.1rem;margin-bottom:1.6rem}
+.handle{font-size:.75rem;color:var(--accent);font-weight:500}
+.claim{margin:.4rem 0 0;color:var(--ink)}
+.why{margin:.45rem 0 0;color:var(--muted);font-size:.95rem}
+
+.lead{background:var(--surface);border:1px solid var(--rule);padding:1.6rem 1.4rem}
+.stars{font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1;
+  font-variant-numeric:tabular-nums}
+.stars small{font-size:.7rem;font-weight:500;color:var(--muted);letter-spacing:.08em}
+.repo{font-size:1.05rem;font-weight:700;margin:.7rem 0 .55rem}
+.tie{border-top:1px solid var(--rule);margin-top:.9rem;padding-top:.8rem;
+  color:var(--muted);font-size:.95rem}
+.tie b{color:var(--ink-soft)}
+.copy{font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.06em;
+  text-transform:uppercase;background:transparent;border:1px solid var(--rule);
+  color:var(--muted);padding:.35rem .7rem;cursor:pointer;border-radius:2px;margin-top:.9rem}
+.copy:hover{border-color:var(--accent);color:var(--accent)}
+
+.item{border-top:1px solid var(--rule);padding:1.35rem 0}
+.item:first-of-type{border-top:none}
+.metric{font-size:.72rem;letter-spacing:.08em;color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.item h3,.tool h3{font-size:1.08rem;font-weight:700;letter-spacing:-.015em;
+  color:var(--ink);margin:.35rem 0 .4rem}
+.tool{border-top:1px solid var(--rule);padding:1.35rem 0}
+.tool:first-of-type{border-top:none}
+.tag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);background:var(--accent-soft);
+  padding:.2rem .5rem;border-radius:2px}
+
+.skip{background:var(--verdict-soft);
+  border:1px solid color-mix(in srgb,var(--verdict) 30%,transparent);padding:1.4rem 1.3rem}
+.skip .label{color:var(--verdict)}
+.skip h3{color:var(--ink);font-family:"Archivo",sans-serif;font-size:1.08rem;margin:0 0 .5rem}
+.verdict{color:var(--verdict);font-weight:600;margin-top:.6rem}
+
+.foot{border-top:1px solid var(--rule);padding-top:1.2rem;color:var(--muted);
+  font-size:.85rem;font-family:"JetBrains Mono",monospace;letter-spacing:.04em}
+.empty{color:var(--muted);font-style:italic}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head><body><div class="wrap">
+<div class="masthead">
+  <div class="brand"><span><b>Tech Pulse</b></span>
+  <span>PM · 2026-08-24</span></div>
+  <h1>Databricks open-sources a coding-agent meta-harness</h1>
+  <p class="lede">Databricks open-sourced Omnigent, a meta-harness that puts Claude Code, Codex, and Cursor under one policy layer — actually worth trying if you&#x27;re juggling more than one agent harness. Meanwhile the DeepSeek Harness plugin wave keeps minting new repos with inflated stars, but the people actually installing the plugins are finding a third of them broken.</p>
+</div><div class="filters"><button class="chip" data-filter="all" aria-pressed="true">Everything</button><button class="chip" data-filter="x" aria-pressed="false">On X</button><button class="chip" data-filter="repo" aria-pressed="false">Repo</button><button class="chip" data-filter="tools" aria-pressed="false">New tools</button><button class="chip" data-filter="rest" aria-pressed="false">Worth knowing</button></div><section data-cat="x"><p class="label">Trending on X</p><div class="xitem">
+  <div class="handle">@phosphenq</div>
+  <p class="claim">Tested 1,673 of the 8,059 DeepSeek Harness (dsh) plugins shipped in the last six days — 600 never even started. Posted exact working install commands for the ones that do.</p>
+  <p class="why">Direct counter-evidence to the star counts on the dsh-* repos flooding GitHub right now. If you touch this ecosystem, verify the install yourself before trusting anything. <a href="https://x.com/phosphenq/status/2090086880670843067">see post →</a></p></div><div class="xitem">
+  <div class="handle">@VersunPan</div>
+  <p class="claim">&quot;deepseek harness 受害者+1&quot; — plugin quality is uneven and forward/backward compatibility is a real unsolved problem. Advises waiting for a stable third-party distribution instead of installing directly.</p>
+  <p class="why">A second independent account of the same failure mode phosphenq quantified — this isn&#x27;t one bad plugin, it&#x27;s the ecosystem. <a href="https://x.com/VersunPan/status/2090315040213926272">see post →</a></p></div><div class="xitem">
+  <div class="handle">@AlexNguyen65</div>
+  <p class="claim">Ran a fully offline Qwen 3.8 27B on a GB10 box (~50 tok/s) against a commercial app&#x27;s license check. First attempt passed one signature check but failed an integrity check; the model noticed the contradiction on its own, iterated, and produced a byte-for-byte working bypass in 30 minutes.</p>
+  <p class="why">Self-correction on a real static-analysis task, fully local, no API in the loop — the bar for a credible offline fallback model keeps dropping. <a href="https://x.com/AlexNguyen65/status/2091500449023025178">see post →</a></p></div></section><section data-cat="repo"><p class="label">Repo of the day</p>
+<div class="lead">
+  <div class="stars">9,229<small> ★ </small></div>
+  <p class="repo"><a href="https://github.com/omnigent-ai/omnigent">omnigent-ai/omnigent</a></p>
+  <p>Apache-2.0 meta-harness, open-sourced by Databricks in June, that sits above Claude Code, Codex, Cursor, OpenCode, and Pi: swap or combine harnesses without rewriting agent logic, route work across several in parallel via YAML custom agents, and enforce built-in policies — spend caps, path-scoped write access — plus sessions that follow you from terminal to browser to phone.</p>
+  <p class="tie"><b>Why it matters:</b> This is the layer you&#x27;d want above RealGenie&#x27;s 13 agents if you ever want to swap which harness drives which agent without a rewrite, and the spend-cap/path-scoping policies are guardrails worth stealing even if you never adopt the whole thing.</p>
+  <button class="copy" data-clone="git clone https://github.com/omnigent-ai/omnigent.git">Copy git clone</button>
+</div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">launch</span><h3><a href="https://github.com/vercel-labs/fx">vercel-labs/fx</a></h3>
+  <p>Vercel&#x27;s new terminal coding agent, written in Zig: a Unix-shell-shaped CLI rather than a TUI/IDE-in-terminal, model-agnostic, ships as a single ~6-8MB binary built for embedding inside other agent infra.</p><p class="why">Early and experimental (field reports say stick to small repos for now), but the embeddable, scriptable shape is closer to what you&#x27;d want inside a custom harness than a heavier IDE-style agent.</p></div><div class="tool"><span class="tag">launch</span><h3><a href="https://github.com/XiaomiMiMo/MiMo-Code">XiaomiMiMo/MiMo-Code</a></h3>
+  <p>Xiaomi&#x27;s free, MIT-licensed terminal coding agent built on OpenCode. Persists state to files so multi-hundred-step tasks survive across sessions instead of losing context.</p><p class="why">The file-backed state approach is worth copying regardless of whether you run MiMo-Code itself — durable task state is exactly what longer-running RealGenie agents need.</p></div><div class="tool"><span class="tag">launch</span><h3><a href="https://github.com/duty1g/x64dbg-mcp-server">duty1g/x64dbg-mcp-server</a></h3>
+  <p>Native MCP plugin for the x64dbg debugger, exposing it over HTTP: 71 tools covering breakpoints, memory read/write, disassembly, PE analysis, plus 22 event callbacks. Zig, zero dependencies, single binary.</p><p class="why">A clean reference for wrapping a stateful native desktop tool as an MCP surface — the same shape you&#x27;d reach for to give an agent control over any app that isn&#x27;t already API-shaped.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">10,635 ★ · GitHub</div>
+  <h3><a href="https://github.com/cobusgreyling/loop-engineering">A CLI toolkit for &quot;loop engineering&quot; with coding agents</a></h3>
+  <p>Patterns, starters, and three CLI tools — loop-init, loop-audit, loop-cost — for designing systems that prompt and orchestrate agents in a loop, plus a GitHub Action for running loops in CI in report-only mode.</p><p class="why">loop-audit and loop-cost are the kind of guardrails worth lifting straight into any CI pipeline that lets an agent run unattended.</p></div><div class="item"><div class="metric">3,028 ★ · GitHub</div>
+  <h3><a href="https://github.com/yetone/cumora">Team chat where AI agents are teammates, not a chatbox</a></h3>
+  <p>Cross-platform chat app from the avante.nvim author: Claude Code/Codex-backed agents each get a persona, memory, and private workspace, can DM, join group chats, claim tasks, and post unprompted.</p><p class="why">A rough model for what a human-visible multi-agent coordination surface could look like if RealGenie&#x27;s agents ever need more than logs to hand off work.</p></div><div class="item"><div class="metric">via @simonw</div>
+  <h3><a href="https://simonwillison.net/2026/Aug/23/drew-breunig/">The &quot;wait for a cheaper model&quot; excuse just ran out</a></h3>
+  <p>Simon Willison quotes Drew Breunig: &quot;Prior to Fable, it felt silly to waste too much time improving your coding harness or context strategies. A new model would arrive at the same price (or cheaper!)&quot;</p><p class="why">Matches the bet this team is already making — harness and context-management work stops being a hedge against model churn and starts being the actual differentiator.</p></div></section><section data-cat="all"><div class="skip">
+  <p class="label">Skip this one</p>
+  <h3><a href="https://github.com/anywhere-labs/dsh-desktop">DeepSeek Harness (dsh) plugin wave</a></h3>
+  <p>anywhere-labs/dsh-desktop alone sits at 19,640★, with awesome-dsh-plugin, dsh-web, dsh-routing-suite, and dsh-anchored-standard all riding the same &quot;everything is a plugin&quot; pitch — 8,059 plugins shipped in six days by @phosphenq&#x27;s count.</p>
+  <p class="verdict">@phosphenq installed 1,673 of them and 600 never started. @VersunPan calls themselves a compatibility-churn victim and says wait for a stable third-party distribution. Star count on any single dsh-* repo is not a signal — check that `dsh plugin add` actually completes before trusting one.</p>
+</div></section><p class="foot">No GitHub watchlist releases in the last 3 days on our tracked repos. X coverage this run was three targeted queries (dsh plugins, omnigent/fx, Qwen reverse-engineering) rather than a general timeline sweep. · Tech Pulse · twice daily</p>
+</div><script>
+const chips=[...document.querySelectorAll('.chip')];
+const secs=[...document.querySelectorAll('section[data-cat]')];
+chips.forEach(c=>c.addEventListener('click',()=>{
+  chips.forEach(o=>o.setAttribute('aria-pressed',String(o===c)));
+  const f=c.dataset.filter;
+  secs.forEach(s=>{s.hidden = f!=='all' && s.dataset.cat!==f;});
+}));
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.dataset.clone);
+    const t=b.textContent;b.textContent='Copied';setTimeout(()=>b.textContent=t,1400);
+  }catch{b.textContent='Copy failed';}
+}));
+</script></body></html>

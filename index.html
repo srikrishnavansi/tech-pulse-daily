@@ -2,8 +2,8 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tech Pulse — 2026-08-24</title>
-<meta name="description" content="A vibecoded MCP server for an oven">
+<title>Tech Pulse — 2026-08-25</title>
+<meta name="description" content="A daemonless sandbox built for agent code">
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,28 +101,39 @@ section[hidden]{display:none}
 </head><body><div class="wrap">
 <div class="masthead">
   <div class="brand"><span><b>Tech Pulse</b></span>
-  <span>PM · 2026-08-24</span></div>
-  <h1>A vibecoded MCP server for an oven</h1>
-  <p class="lede">GitHub&#x27;s breakout list today is mostly one coordinated &#x27;DeepSeek Harness&#x27; star-farming wave, so skip it. The real signal came from X: someone MCP&#x27;d their oven, Shopify&#x27;s CEO rewrote git-at-scale in a weekend, and a new tool turns Claude Code session logs into daily standup notes.</p>
-</div><div class="filters"><button class="chip" data-filter="all" aria-pressed="true">Everything</button><button class="chip" data-filter="x" aria-pressed="false">On X</button><button class="chip" data-filter="tools" aria-pressed="false">New tools</button><button class="chip" data-filter="rest" aria-pressed="false">Worth knowing</button></div><section data-cat="x"><p class="label">Trending on X</p><div class="xitem">
-  <div class="handle">@amplifiedamp<span class="engagement">1,574 likes · 48 reposts</span></div>
-  <p class="claim">Reverse-engineered the BLE protocol of a smart oven&#x27;s companion app and wrapped it as an MCP server. Claude Code can now read the temp probe and switch air-fry/steam/combi modes in real time.</p>
-  <p class="why">Same MCP shape we use for RealGenie&#x27;s property integrations — sensors and actuators behind tool calls instead of a custom SDK. <a href="https://x.com/amplifiedamp/status/2091639162122211601">see post →</a></p></div><div class="xitem">
-  <div class="handle">@tobi<span class="engagement">4,625 likes · 241 reposts</span></div>
-  <p class="claim">Implemented Cursor&#x27;s &#x27;Git at Scale&#x27; blog post as a single Rust binary — WAL + CAS primitives, bundle-uri for fast large-repo clones, works against any S3-compatible store, no extra database. Built solo in one weekend, open-sourced.</p>
-  <p class="why">A useful data point on how little scaffolding a working infra rewrite actually needs when someone just sits down and builds it. <a href="https://x.com/tobi/status/2091678506992222258">see post →</a></p></div><div class="xitem">
-  <div class="handle">@nwiizo<span class="engagement">729 likes · 70 reposts</span></div>
-  <p class="claim">Built nippo — ingests Claude Code / Codex session logs and auto-generates daily reports (what got done, decisions made, blockers) plus reflection questions for the human.</p>
-  <p class="why">A ready-made shape for the session-log tooling we&#x27;ve talked about wanting around our own Claude Code usage. <a href="https://x.com/nwiizo/status/2091750706382536777">see post →</a></p></div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">launch</span><h3><a href="https://github.com/cinderline/northcinder">cinderline/northcinder</a></h3>
-  <p>Self-hosted MCP server that has an agent compare products against a brief and return a ranked shortlist with reasons. Deterministic ranking (seller payment never affects position), a signed purchase mandate required before checkout, and a local audit trail. No hosted service, no telemetry — runs on your machine.</p><p class="why">A clean reference for the parts of MCP server design that are easy to skip: an explicit approval gate before an agent can act, and an audit trail you actually control.</p></div><div class="tool"><span class="tag">launch</span><h3><a href="https://picomq.com/">PicoMQ</a></h3>
-  <p>Durable, real-time streams over HTTP built directly on S3-compatible object storage — no broker to run. One stream per use case instead of one shared topic, each independently addressable and scaling from idle to high throughput.</p><p class="why">Worth a look next time an agent pipeline needs a queue between steps and standing up Kafka or Redis feels like overkill.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">258 pts · HN</div>
-  <h3><a href="https://larsfaye.com/articles/ai-coding-will-prevent-expertise">Does heavy agent reliance erode coding skill?</a></h3>
-  <p>HN debate off an essay arguing that leaning on AI coding assistants prevents engineers from building the expertise needed to actually catch the assistant&#x27;s mistakes.</p><p class="why">Worth five minutes if anyone&#x27;s rubber-stamping RealGenie or ReBuddy agent output without reading the diff.</p></div></section><section data-cat="all"><div class="skip">
+  <span>AM · 2026-08-25</span></div>
+  <h1>A daemonless sandbox built for agent code</h1>
+  <p class="lede">Kern ships a 1.5MB, no-daemon sandbox purpose-built for running agent- or LLM-generated code safely, and Codex&#x27;s 5-hour Plus limit is coming back to smooth compute load. Meanwhile five DeepSeek Harness plugin repos broke into today&#x27;s breakout list with zero real usage reports behind them.</p>
+</div><div class="filters"><button class="chip" data-filter="all" aria-pressed="true">Everything</button><button class="chip" data-filter="x" aria-pressed="false">On X</button><button class="chip" data-filter="repo" aria-pressed="false">Repo</button><button class="chip" data-filter="tools" aria-pressed="false">New tools</button><button class="chip" data-filter="rest" aria-pressed="false">Worth knowing</button></div><section data-cat="x"><p class="label">Trending on X</p><div class="xitem">
+  <div class="handle">@thsottiaux<span class="engagement">~8,122 likes · 483 reposts</span></div>
+  <p class="claim">Restoring the 5-hour usage limit for ChatGPT Plus/Work and Codex accounts (kept off for $100/$200 Pro tiers) to smooth compute load, weekly caps unchanged.</p>
+  <p class="why">Directly changes how far you get through a Codex session — worth knowing before you plan work around it this week. <a href="https://x.com/thsottiaux/status/2092058556707344708">see post →</a></p></div><div class="xitem">
+  <div class="handle">@tobi<span class="engagement">~4,997 likes · 265 reposts</span></div>
+  <p class="claim">Shipped a working open-source Rust implementation of Cursor&#x27;s &#x27;Git at Scale&#x27; blog post — WAL, content-addressed storage, S3-compatible, bundle-uri support — over a weekend.</p>
+  <p class="why">A CEO turning a vendor blog post into working code in a weekend is a good reminder these ideas are buildable, not just marketing copy. <a href="https://x.com/tobi/status/2091678506992222258">see post →</a></p></div><div class="xitem">
+  <div class="handle">@ClaudeDevs<span class="engagement">~2,529 likes · 155 reposts</span></div>
+  <p class="claim">Enterprise-managed auth for MCP connectors is now GA — Team/Enterprise admins centralize connector auth through their identity provider instead of per-user OAuth.</p>
+  <p class="why">We write our own MCP servers — this changes how auth should be wired for anything we roll out past personal use. <a href="https://x.com/ClaudeDevs/status/2091953609185657251">see post →</a></p></div></section><section data-cat="repo"><p class="label">Repo of the day</p>
+<div class="lead">
+  <div class="stars">831<small> ★ new this week, breakout</small></div>
+  <p class="repo"><a href="https://github.com/Spielewoy/autoprompt-skill">Spielewoy/autoprompt-skill</a></p>
+  <p>A Claude Code / Codex skill that runs the full loop — scope, implement, test, review, repair — from one goal, constraints and success criteria, stopping only for decisions that change the outcome, actions needing your authority, or blockers it can&#x27;t resolve safely. Its README claims a 45% cut in agentic task failures — that&#x27;s the maintainer&#x27;s own number, no benchmark data or comparison published.</p>
+  <p class="tie"><b>Why it matters:</b> This is the shape we&#x27;d want for our own Claude Code skills: an autonomous loop that knows when to stop and ask instead of over-asking or silently barreling through. Worth reading even if we don&#x27;t adopt it as-is.</p>
+  <button class="copy" data-clone="git clone https://github.com/Spielewoy/autoprompt-skill.git">Copy git clone</button>
+</div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">show hn</span><h3><a href="https://github.com/getkern/kern">getkern/kern</a></h3>
+  <p>A rootless, daemonless container/sandbox runtime — one 1.52MB static binary that spins up a real kernel-enforced container (namespaces, seccomp allowlist, cgroup v2 limits) from an OCI image in ~3.5ms. Ships a kern-sandbox wrapper specifically for running agent- or LLM-generated code in isolation: network off, memory/pid caps, capabilities dropped, output bounded, timeout enforced.</p><p class="why">This is exactly the shape of thing you&#x27;d reach for to sandbox a RealGenie agent&#x27;s generated code or shell commands without standing up Docker. Worth a spike before hand-rolling another subprocess jail.</p></div><div class="tool"><span class="tag">launch</span><h3><a href="https://www.neowin.net/news/qwen-36-is-now-much-easier-to-run-locally-on-your-mac-thanks-to-jetbrains/">JetBrains Junie Local (Qwen3.6-27B)</a></h3>
+  <p>Junie Local runs Qwen3.6-27B on-device with one command, skipping manual Ollama/llama.cpp setup. Needs an M5 Mac with 64GB+ RAM. JetBrains says it benchmarks on par with Sonnet 4 for their coding-agent workload — their own comparison, not independently verified.</p><p class="why">A concrete local-fallback data point if we ever want RealGenie or ReBuddy agents to keep working offline or under a sensitivity threshold.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">114 pts · HN</div>
+  <h3><a href="https://boydkane.com/essays/llms-could-control-their-host-machines-by-exploiting-inference-engines">LLMs could control the machine that runs them</a></h3>
+  <p>Essay on how a malicious or compromised LLM could exploit its own inference engine to break out to the host. Concrete example: CVE-2025-9141, an arbitrary-code-execution bug in vLLM&#x27;s XML tool parser for Qwen3 Coder that piped tool-call arguments straight into eval().</p><p class="why">If we ever self-host inference for agent tool-calling, the tool parser is an attack surface we don&#x27;t normally think about — worth a read before wiring any local inference engine to agent tool calls.</p></div><div class="item"><div class="metric">blog · Hugging Face</div>
+  <h3><a href="https://huggingface.co/blog/gradio-workflow-guide">Gradio adds a visual builder for agent workflows</a></h3>
+  <p>gr.Workflow is a node-based canvas built into Gradio for chaining Hugging Face Spaces, models, datasets and your own Python functions into a pipeline, then running and deploying it.</p><p class="why">A low-effort way to prototype a workflow shape before committing to code, or to demo an agent pipeline to non-engineers.</p></div><div class="item"><div class="metric">blog · simonwillison.net</div>
+  <h3><a href="https://simonwillison.net/2026/Aug/24/llm-anthropic/">llm-anthropic 0.27</a></h3>
+  <p>Routine version bump to Simon Willison&#x27;s llm CLI plugin for Claude models.</p><p class="why">If you use `llm` against Claude day to day, this is a quick `pip install -U llm-anthropic`.</p></div></section><section data-cat="all"><div class="skip">
   <p class="label">Skip this one</p>
-  <h3><a href="https://github.com/yjh051108/dsh-routing-suite">yjh051108/dsh-routing-suite</a></h3>
-  <p>6,759 stars, part of a larger &#x27;DeepSeek Harness&#x27; repo wave (sibling repos in today&#x27;s same list hit 5.9K, 3.7K, 2.2K, 962 and 951 stars). A promotional thread claims a three-step install, task completion going from 0% to 100%, 96% routing accuracy, and 92-94% cache hit rate.</p>
-  <p class="verdict">Nobody who&#x27;s actually installed and run it has posted about it. The only mentions found are a star-count bot, the vendor&#x27;s own unverified promo thread, and a content-free &#x27;guide&#x27; image — zero independent corroboration of any of those numbers.</p>
-</div></section><p class="foot">6 of today&#x27;s 8 GitHub breakout repos belong to the same &#x27;DeepSeek Harness&#x27; star-farming wave, plus one unrelated UI kit — nothing left standing for a repo of the day. The curated-account X sweep returned nothing usable this run. · Tech Pulse · twice daily</p>
+  <h3><a href="https://github.com/zhu1090093659/dsh-web">DeepSeek Harness plugin gold rush (dsh-web and friends)</a></h3>
+  <p>Five separate dsh-* plugin repos broke into this run&#x27;s GitHub breakout list — zhu1090093659/dsh-web alone shows 5,966 stars. The dsh-plugin GitHub topic reportedly passed 890 repos within a day of deepseek-harness going public.</p>
+  <p class="verdict">No real installer reports turned up on X — the only mention of dsh-web there is a trending-repo bot listing it, not a user. Independent write-ups on the base deepseek-harness project found roughly 10x the token usage of comparable frameworks and a bug that double-injects the system prompt when CLAUDE.md and AGENTS.md match. At least one high-star &#x27;plugin&#x27; (titanwings/colleague-skill) turned out to be an old repo relabeled to ride the wave — star counts in this ecosystem aren&#x27;t signal right now. Let it settle before installing anything from the list.</p>
+</div></section><p class="foot">The curated 19-handle X sweep came back empty — the query didn&#x27;t actually carry the handle list, so that&#x27;s a tooling gap this run, not silence from those accounts. Most of today&#x27;s HN front page was non-technical and got cut; only the inference-engine security essay survived. · Tech Pulse · twice daily</p>
 </div><script>
 const chips=[...document.querySelectorAll('.chip')];
 const secs=[...document.querySelectorAll('section[data-cat]')];

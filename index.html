@@ -2,8 +2,8 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tech Pulse — 2026-08-28</title>
-<meta name="description" content="GLM-5.3 goes open-weight, hosting recipes appear">
+<title>Tech Pulse — 2026-08-29</title>
+<meta name="description" content="Claude Code sessions now survive a restart">
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,25 +101,42 @@ section[hidden]{display:none}
 </head><body><div class="wrap">
 <div class="masthead">
   <div class="brand"><span><b>Tech Pulse</b></span>
-  <span>PM · 2026-08-28</span></div>
-  <h1>GLM-5.3 goes open-weight, hosting recipes appear</h1>
-  <p class="lede">Zhipu&#x27;s GLM-5.3 (744B total, 40B active) landed on Hugging Face and practitioners are already publishing real hardware recipes and cost numbers for self-hosting the Flash variant. X&#x27;s viral-sweep and curated-account queries both came back empty today, so the trending section below runs entirely on those hands-on reports.</p>
-</div><div class="filters"><button class="chip" data-filter="all" aria-pressed="true">Everything</button><button class="chip" data-filter="x" aria-pressed="false">On X</button><button class="chip" data-filter="tools" aria-pressed="false">New tools</button><button class="chip" data-filter="rest" aria-pressed="false">Worth knowing</button></div><section data-cat="x"><p class="label">Trending on X</p><div class="xitem">
-  <div class="handle">@minebench_ai</div>
-  <p class="claim">Ran GLM-5.3-Flash through MineBench: averaged 37m 20s per task at $0.74 total API cost.</p>
-  <p class="why">Cheapest end-to-end agentic benchmark run reported this week — a real data point if you&#x27;re weighing per-task cost for RealGenie&#x27;s agents. <a href="https://x.com/minebench_ai/status/2092773212950044800">see post →</a></p></div><div class="xitem">
-  <div class="handle">@intheloop_hv</div>
-  <p class="claim">Quantized GLM-5.3-Flash on a GX10 cluster with OMP: ~49 tok/s on code, ~39 tok/s decode.</p>
-  <p class="why">First real throughput numbers for self-hosting the Flash variant outside vendor benchmarks, useful if you&#x27;re sizing a local inference box. <a href="https://x.com/intheloop_hv/status/2093434991598608393">see post →</a></p></div><div class="xitem">
-  <div class="handle">@CardilloSamuel</div>
-  <p class="claim">Published a recipe for running GLM-5.3-Flash on 2x RTX PRO 6000 Blackwell with 262k context, adaptive MTP, prefix caching, tool calls and vision.</p>
-  <p class="why">A concrete, reproducible local-hosting path for a tool-calling + vision model — maps directly onto agent harness work. <a href="https://x.com/CardilloSamuel/status/2093431332772999184">see post →</a></p></div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">launch</span><h3><a href="https://huggingface.co/zai-org/GLM-5.3">GLM-5.3 open weights</a></h3>
-  <p>Zhipu/Z.ai&#x27;s flagship coding and agentic model is now downloadable from Hugging Face: 744B total params, ~40B active (MoE), 1M context. The self-hostable GLM-5.3-Flash variant (320B total, 18B active) is API-priced at $0.15/M input, $0.50/M output.</p><p class="why">Vendor Terminal-Bench and Agentic Index numbers are self-reported, but the hosting recipes above are real — worth a spot check against Claude/Codex on a RealGenie-style agentic task.</p></div><div class="tool"><span class="tag">release</span><h3><a href="https://github.com/ollama/ollama/releases/tag/v0.33.1">Ollama v0.33.1</a></h3>
-  <p>Adds MLX support for Qwen3.8 Flash Next, structured output support in mlxrunner, and a fix for Metal GPU timeouts when loading models from slow storage.</p><p class="why">Removes a real friction point for running local models on Apple Silicon dev boxes — relevant if you&#x27;re testing GLM-5.3-Flash or other MoE models locally this week.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">42 pts · HN</div>
-  <h3><a href="https://arxiv.org/abs/2608.23691">Autonomous Mathematical Discovery in an Open-World Multi-Agent Environment</a></h3>
-  <p>A multi-agent system that autonomously discovers and proves new mathematical results in an open-world setting. The paper ships source code, raw agent dialogues, and verification artifacts alongside the results.</p><p class="why">Full agent transcripts and verification tooling published alongside a multi-agent paper is rare — worth a skim for orchestration and self-verification patterns that generalize past math.</p></div><div class="item"><div class="metric">GitHub release</div>
-  <h3><a href="https://github.com/openai/codex/releases/tag/rust-v0.150.1">Codex rust-v0.150.1: token-budgeted image retention</a></h3>
-  <p>Remote compaction in Codex now counts retained images toward its token budget by default, trimming older images as needed.</p><p class="why">A direct precedent for how another agent harness handles multimodal context pressure — relevant if RealGenie&#x27;s agents are carrying images through long sessions.</p></div></section><p class="foot">X&#x27;s viral-sweep operators (min_faves/min_retweets across AI agent, coding agent, LLM, MCP, RAG, etc.) and the curated-account query both returned nothing usable today, so x_trending leans entirely on one targeted GLM-5.3 thread; treat those as day-0, single-user reports, not cross-validated benchmarks. HN&#x27;s front page was dominated by non-technical/political stories that were muted per the brief. · Tech Pulse · twice daily</p>
+  <span>AM · 2026-08-29</span></div>
+  <h1>Claude Code sessions now survive a restart</h1>
+  <p class="lede">Claude Code shipped /resume (full terminal session restore) plus per-session cache-hit tracking this week, and Thomson Reuters put real numbers on what it costs to turn open-weight Qwen into an in-house production model. Separately, Cloudflare&#x27;s new agent-computer runtime is the fastest-climbing repo on GitHub right now, though hands-on reports are still thin.</p>
+</div><div class="filters"><button class="chip" data-filter="all" aria-pressed="true">Everything</button><button class="chip" data-filter="x" aria-pressed="false">On X</button><button class="chip" data-filter="repo" aria-pressed="false">Repo</button><button class="chip" data-filter="tools" aria-pressed="false">New tools</button><button class="chip" data-filter="rest" aria-pressed="false">Worth knowing</button></div><section data-cat="x"><p class="label">Trending on X</p><div class="xitem">
+  <div class="handle">@ClaudeDevs<span class="engagement">5,924 likes</span></div>
+  <p class="claim">Shipped /resume in the Claude Code desktop app — restores a full terminal session, scrollback included, from a previous run.</p>
+  <p class="why">Combined with the same-week CLI release (v2.1.251, below), this is the actual fix for the &#x27;laptop died mid-agent-run, start over&#x27; problem. <a href="https://x.com/i/status/2093085079761297438">see post →</a></p></div><div class="xitem">
+  <div class="handle">@cursor_ai<span class="engagement">3,611 likes</span></div>
+  <p class="claim">New Cursor feature builds a web app end to end: write the code, store it in Origin (Cursor&#x27;s own code host), deploy straight to Vercel without leaving the editor.</p>
+  <p class="why">The interesting part isn&#x27;t Cursor-specific — it&#x27;s collapsing scaffold-to-deploy into one loop, which is the workflow shape worth stealing for our own harnesses. <a href="https://x.com/i/status/2093480630801858750">see post →</a></p></div><div class="xitem">
+  <div class="handle">@HedgieMarkets<span class="engagement">2,491 likes · 597 reposts</span></div>
+  <p class="claim">Thomson Reuters spent roughly $40M over two years (final training run: $450K) turning Alibaba&#x27;s open-weight Qwen into an in-house model (Thomson-1) trained on Westlaw/Practical Law/Reuters content, aimed at taking over some work Claude was doing.</p>
+  <p class="why">Real cost data for the open-weights-to-production build, from a company that actually did it. Independent coverage we checked says they&#x27;re narrowing Anthropic usage, not dropping it — worth knowing before this gets oversimplified in a hallway conversation. <a href="https://x.com/i/status/2093358234547478780">see post →</a></p></div><div class="xitem">
+  <div class="handle">@simonw<span class="engagement">2,240 likes</span></div>
+  <p class="claim">Released an LLM-writing cliché highlighter — paste in text, it flags 38 known AI-writing tells (&quot;no X, no Y&quot; chains, &quot;sit with that,&quot; etc.) with hover explanations.</p>
+  <p class="why">A genuinely useful five-minute check before shipping any user-facing copy or docs an agent drafted. <a href="https://x.com/i/status/2093532254006063557">see post →</a></p></div></section><section data-cat="repo"><p class="label">Repo of the day</p>
+<div class="lead">
+  <div class="stars">8,812<small> ★ breakout — new and climbing fast this week</small></div>
+  <p class="repo"><a href="https://github.com/cloudflare/computer">cloudflare/computer</a></p>
+  <p>A virtual filesystem for agents, backed by SQLite inside a Cloudflare Durable Object, exposed through one pluggable workspace.runtime surface. An agent gets read/write/edit on files, shell commands, and git — a persistent, addressable machine instead of a container spun up and torn down per task. MIT-licensed, shipped Aug 3.</p>
+  <p class="tie"><b>Why it matters:</b> Closer to what a 13-agent RealGenie deployment actually wants than another ephemeral sandbox: one inspectable workspace per agent you can reattach to. Caveat: the only concrete user report we found on X was a one-line &quot;it works!!!&quot; with no setup detail — treat this as promising, not proven yet.</p>
+  <button class="copy" data-clone="git clone https://github.com/cloudflare/computer.git">Copy git clone</button>
+</div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">official release</span><h3><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.251">Claude Code v2.1.251</a></h3>
+  <p>Per-session prompt-cache line in /cost (hit ratio, misses, re-cache cost), new PreModelSwitch/PostModelSwitch hook events to block or annotate model switches, and /effort settings that now persist per model instead of resetting when you switch.</p><p class="why">The cache visibility and per-model effort memory are worth turning on today if you&#x27;re running mixed-model agent chains in RealGenie or ReBuddy.</p></div><div class="tool"><span class="tag">Show HN launch</span><h3><a href="https://github.com/sseshachala/conductai">Conduct (conductai)</a></h3>
+  <p>Open-source runtime governance for agents: an MCP layer that inspects every tool call plus a router in front of any LLM SDK, enforcing a signed, fail-closed policy — block/warn/audit/inject — before the call executes. Self-hostable with docker compose.</p><p class="why">The shape of guardrail you&#x27;d want sitting in front of a hand-rolled MCP server instead of trusting each tool&#x27;s own input validation.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">73 pts · HN</div>
+  <h3><a href="https://pwning.systems/posts/llm-memory-program-analysis/">Turning agent memory into a program-analysis problem</a></h3>
+  <p>Built Lemmalog, a Datalog engine that keeps an agent&#x27;s knowledge as analysis state — with provenance and retractions — instead of a flat memory store. When new information contradicts an old fact, it retracts that fact and works out which downstream conclusions no longer hold.</p><p class="why">A more principled model for &#x27;agent needs to update a belief&#x27; than re-embedding and re-retrieving — directly relevant to the memory layer this team keeps circling back to.</p></div><div class="item"><div class="metric">280 pts · HN</div>
+  <h3><a href="https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/">A rumour of a bug is now enough to find the exploit</a></h3>
+  <p>Simon Willison on how LLM-assisted code search collapses the gap between &#x27;there might be a bug here&#x27; and a working exploit — you no longer need the CVE, just a vague description of the bug class.</p><p class="why">Worth internalizing for anything RealGenie or ReBuddy exposes publicly — the bar for finding your bugs just dropped.</p></div><div class="item"><div class="metric">1,840 likes · X</div>
+  <h3><a href="https://x.com/i/status/2092550620117193039">Unreal&#x27;s City Sample rebuilt entirely through an MCP server</a></h3>
+  <p>Epic used procedural content generation plus LLM assistance, driven through a new Unreal MCP server, to rebuild the whole City Sample level — fully editable output, no black-box asset generation.</p><p class="why">Not our stack, but it&#x27;s a real production pipeline proving MCP-driven tool use scales past chat — the same pattern applies to any agent that needs to drive an external editor rather than just call an API.</p></div></section><section data-cat="all"><div class="skip">
+  <p class="label">Skip this one</p>
+  <h3><a href="https://github.com/sapientinc/PRAXIST">sapientinc/PRAXIST</a></h3>
+  <p>1,778 stars and climbing. Sapient Intelligence bills it as &quot;the world&#x27;s first production-ready, open-source autonomous research system,&quot; claiming 49-of-75 top-tier results on MLE-Bench versus 34-of-75 for Claude Code, at roughly $3K in model cost versus $38K.</p>
+  <p class="verdict">Skip the &quot;open source&quot; framing — it&#x27;s Fair Source 1.0, not an OSI license: free for internal use only if your org&#x27;s revenue is under $1M, and it forbids redistributing PRAXIST as a standalone product. The benchmark numbers are Sapient&#x27;s own, not independently reproduced.</p>
+</div></section><p class="foot">The curated-handle X query came back empty this run — no handles were actually passed into it, a pipeline gap rather than those accounts going quiet. On-the-ground reports for cloudflare/computer are still thin. Coverage today is GitHub, Hacker News and X only. · Tech Pulse · twice daily</p>
 </div><script>
 const chips=[...document.querySelectorAll('.chip')];
 const secs=[...document.querySelectorAll('section[data-cat]')];

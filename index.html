@@ -2,8 +2,8 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tech Pulse — 2026-08-30</title>
-<meta name="description" content="Claude Code and Codex both loosen your quota">
+<title>Tech Pulse — 2026-08-31</title>
+<meta name="description" content="Claude Code&#x27;s weekly limit change draws fire">
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,35 +101,40 @@ section[hidden]{display:none}
 </head><body><div class="wrap">
 <div class="masthead">
   <div class="brand"><span><b>Tech Pulse</b></span>
-  <span>PM · 2026-08-30</span></div>
-  <h1>Claude Code and Codex both loosen your quota</h1>
-  <p class="lede">Anthropic and OpenAI each shipped concrete usage-limit improvements to their coding agents this week, Tencent open-sourced a 770B-parameter model with a 1M-token context, and AI crawlers quietly became almost all the traffic on git.kernel.org. Otherwise thin: no new open-source repo worth the &quot;run it today&quot; slot.</p>
-</div><div class="filters"><button class="chip" data-filter="all" aria-pressed="true">Everything</button><button class="chip" data-filter="x" aria-pressed="false">On X</button><button class="chip" data-filter="tools" aria-pressed="false">New tools</button><button class="chip" data-filter="rest" aria-pressed="false">Worth knowing</button></div><section data-cat="x"><p class="label">Trending on X</p><div class="xitem">
-  <div class="handle">@thsottiaux<span class="engagement">18,234 likes · 971 reposts</span></div>
-  <p class="claim">OpenAI reset usage for all paid Codex/ChatGPT Work users after fixing bugs in compaction, memory workers, goals, subagents, and MCP encoding — the same allowance now lasts 10-50% longer.</p>
-  <p class="why">Compaction and subagent bugs were apparently burning quota silently on their end — worth a look at whether our own harness&#x27;s compaction path has the same waste. <a href="https://x.com/thsottiaux/status/2093801758665715784">see post →</a></p></div><div class="xitem">
-  <div class="handle">@ClaudeDevs<span class="engagement">17,759 likes · 927 reposts</span></div>
-  <p class="claim">Anthropic raised standard weekly limits in Claude Code by 25% for Pro/Max/Team/Enterprise plans — still a net 17% cut from the prior 50% promo, but a real increase from where limits sat last week.</p>
-  <p class="why">Directly changes how much headroom we have for running parallel Claude Code sessions across the team. <a href="https://x.com/ClaudeDevs/status/2093742321473065266">see post →</a></p></div><div class="xitem">
-  <div class="handle">@snskritinaruka<span class="engagement">7,814 likes · 1,656 reposts</span></div>
-  <p class="claim">28-minute walkthrough from an engineer who built Claude Code, covering CLAUDE.md conventions, memory shortcuts, parallel sessions, and prompting patterns.</p>
-  <p class="why">Straight from the source on the exact conventions we lean on for our own CLAUDE.md files and skills. <a href="https://x.com/snskritinaruka/status/2093706739946328283">see post →</a></p></div><div class="xitem">
-  <div class="handle">@HedgieMarkets<span class="engagement">2,555 likes · 615 reposts</span></div>
-  <p class="claim">Thomson Reuters spent ~$40M over two years (final training run $450K) fine-tuning Alibaba&#x27;s open-weight Qwen on Westlaw/Practical Law/Reuters content, then published a small version on Hugging Face — explicitly to stop paying Anthropic API bills.</p>
-  <p class="why">A real enterprise data point for the build-vs-buy math on moving off a hosted API onto an open-weight fine-tune, if that tradeoff ever comes up for RealGenie. <a href="https://x.com/HedgieMarkets/status/2093091434064670861">see post →</a></p></div><div class="xitem">
-  <div class="handle">@UnrealEngine<span class="engagement">1,885 likes · 208 reposts</span></div>
-  <p class="claim">Epic&#x27;s own announcement: City Sample got a major update built with PCG plus LLM assistance through Unreal&#x27;s new MCP server, described as fully editable with no black boxes.</p>
-  <p class="why">Another sighting of MCP servers wired into a real production tool chain rather than a chat wrapper — worth knowing what an MCP integration looks like at that scale, even outside our stack. <a href="https://x.com/UnrealEngine/status/2093053059580760305">see post →</a></p></div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">launch</span><h3><a href="https://github.com/Tencent-Hunyuan/Hy4-preview">Tencent Hunyuan Hy4 Preview</a></h3>
-  <p>Open-weight MoE model, 770B total / 49B active params, 1M+ token context, weights on Hugging Face and GitHub — Tencent&#x27;s third Hunyuan release in six months, up from Hy3&#x27;s 295B/21B/256K. Early hands-on threads on X show agentic-coding demos and one-shot Three.js scenes, but no independent benchmarks or failure-mode reports yet; most of what&#x27;s circulating is testing done through Tencent&#x27;s own WorkBuddy tool.</p><p class="why">Full open weights at real scale with a genuinely large context window — worth a spin if we&#x27;re ever evaluating self-hosted fallbacks the way Thomson Reuters did with Qwen above.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">104 pts · HN</div>
-  <h3><a href="https://github.com/anthropics/claude-code/issues/66504">Claude Code leaks session URLs into commit messages by default</a></h3>
-  <p>Every commit and PR Claude Code writes gets a claude.ai/code/session_... URL appended, with no opt-in prompt or onboarding warning. A dedicated attribution.sessionUrl setting (added in v2.1.183) can turn it off for web/Remote Control sessions.</p><p class="why">Worth checking our own Claude Code settings — this leaks internal session links into commit history, public or otherwise, until it&#x27;s disabled.</p></div><div class="item"><div class="metric">339 pts · HN</div>
-  <h3><a href="https://people.kernel.org/monsieuricon/creepy-crawlies">AI crawlers are now almost all of git.kernel.org&#x27;s traffic</a></h3>
-  <p>Konstantin Ryabitsev&#x27;s writeup: legitimate human traffic is roughly 2% of requests to git.kernel.org; the rest is scraper bots, increasingly from millions of rotating residential/mobile IPs making 4-5 requests each, which defeats IP-based blocking. 14-16 of 90 cores stay busy just rendering commits for scrapers, and an Anubis proof-of-work challenge now bounces 66% of requests.</p><p class="why">If we ever expose git, docs, or API surfaces publicly for RealGenie or ReBuddy, this is the traffic shape to plan for — proof-of-work challenges over IP blocklists.</p></div></section><section data-cat="all"><div class="skip">
+  <span>AM · 2026-08-31</span></div>
+  <h1>Claude Code&#x27;s weekly limit change draws fire</h1>
+  <p class="lede">X&#x27;s real story this run is Anthropic&#x27;s Claude Code weekly-limit change — Theo&#x27;s fix-it thread outdid the announcement itself, and Codex&#x27;s own usage-reset clock is making the rounds too. Underneath that: a full agent org shipped as a Claude Code plugin, and a 9k-star CRM nobody can produce a single real usage report for.</p>
+</div><div class="filters"><button class="chip" data-filter="all" aria-pressed="true">Everything</button><button class="chip" data-filter="x" aria-pressed="false">On X</button><button class="chip" data-filter="repo" aria-pressed="false">Repo</button><button class="chip" data-filter="tools" aria-pressed="false">New tools</button><button class="chip" data-filter="rest" aria-pressed="false">Worth knowing</button></div><section data-cat="x"><p class="label">Trending on X</p><div class="xitem">
+  <div class="handle">@theo<span class="engagement">10.4k likes · 217 reposts</span></div>
+  <p class="claim">Posted a fix-it template for how Anthropic should have announced the Claude Code weekly-limit change: the promo ending Sept 14 leaves a permanent 25% cap increase that nets a real ~17% cut, and Fable&#x27;s separate limit gets folded back in. Quotes the official ClaudeDevs post directly.</p>
+  <p class="why">That ~17% number is the actual ceiling this team&#x27;s Claude Code usage runs against after Sept 14 — worth knowing ahead of the promo ending, not after. <a href="https://x.com/i/status/2093962020962083139">see post →</a></p></div><div class="xitem">
+  <div class="handle">@thsottiaux<span class="engagement">12.3k likes · 543 reposts</span></div>
+  <p class="claim">OpenAI/Codex team confirmed Codex and ChatGPT Work usage resets land at 6pm PST, telling paid subscribers to burn as much usage as they can on new features before then.</p>
+  <p class="why">Anyone here running Codex alongside Claude Code now has the actual reset clock to plan heavy runs around. <a href="https://x.com/i/status/2094088150154895774">see post →</a></p></div><div class="xitem">
+  <div class="handle">@codex_lab_<span class="engagement">3.3k likes · 222 reposts</span></div>
+  <p class="claim">Built a site that bulk-downloads DESIGN.md files — color, type, spacing tokens — scraped from 2,000+ real products (Linear, Notion, ElevenLabs) so Claude Code/Codex/Cursor/v0 output stops looking generically AI-made. Supports Tailwind v4 and CSS vars.</p>
+  <p class="why">A drop-in fix for the &#x27;looks like an agent made it&#x27; problem the moment we hand an agent real UI work. <a href="https://x.com/i/status/2094061655990702150">see post →</a></p></div><div class="xitem">
+  <div class="handle">@lisaknowsai<span class="engagement">2.9k likes · 355 reposts</span></div>
+  <p class="claim">Demoed an open-source Claude Code pipeline (&#x27;Video Use&#x27;): drop raw footage in a folder and it cuts clips, kills filler words, adds subtitles and color-corrects, no timeline or manual edit.</p>
+  <p class="why">Less interesting for the video part, more for the shape: a folder-drop trigger driving a multi-step agentic pipeline end to end — same pattern as our own harness work, different domain. <a href="https://x.com/i/status/2094050094597480522">see post →</a></p></div></section><section data-cat="repo"><p class="label">Repo of the day</p>
+<div class="lead">
+  <div class="stars">739<small> ★ </small></div>
+  <p class="repo"><a href="https://github.com/cbrock84/headcount">cbrock84/headcount</a></p>
+  <p>An entire company structured as Claude Code plugins: 15+ departments, 125+ skills, each independently installable so a project only loads what it needs. Skills are namespaced department:skill (security:threat-modeling, finance:unit-economics) so names never collide, every department ships an agent charter under .claude/agents/ so it can be delegated to as a subagent with its own exclusive write surface, and Security/Legal review other departments&#x27; commits with blocking findings the reviewed department can&#x27;t overrule.</p>
+  <p class="tie"><b>Why it matters:</b> This is a concrete answer to the problem RealGenie&#x27;s ~13 agents already have — namespacing skills, giving each agent a bounded write surface, and having some agents&#x27; findings actually block others instead of just advising.</p>
+  <button class="copy" data-clone="git clone https://github.com/cbrock84/headcount.git">Copy git clone</button>
+</div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">skill</span><h3><a href="https://github.com/Nanako0129/sepia">Nanako0129/sepia</a></h3>
+  <p>A Claude Code / Codex / Grok Build / Antigravity skill that rewrites AI-sounding prose toward a human distribution instead of just inverting obvious tells — narrative-repair rules for fiction, venue-matched rules for professional prose, based on the StoryScope paper (arXiv:2604.03136).</p><p class="why">Worth a look for anything customer-facing an agent drafts — docs, PR descriptions, support replies — where &#x27;clearly written by an agent&#x27; is the thing to avoid.</p></div><div class="tool"><span class="tag">skill</span><h3><a href="https://github.com/kacperkapusciak/goldie">kacperkapusciak/goldie</a></h3>
+  <p>A Claude Code / Cursor / Codex skill that drives an iOS simulator to shoot App Store screenshots and preview videos, frames them with device bezels and backgrounds, and checks the result against Apple&#x27;s upload rules. Framework-agnostic — SwiftUI, UIKit, Flutter, RN, KMP.</p><p class="why">Only relevant the day this team ships a mobile app store listing, but it&#x27;s a clean example of a skill that drives a simulator and validates its own output against a spec, not just generates static assets.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">103 pts · HN</div>
+  <h3><a href="https://simonwillison.net/2026/Aug/30/understanding-chatgpt-work/">Understanding ChatGPT Work</a></h3>
+  <p>Simon Willison&#x27;s breakdown of OpenAI&#x27;s ChatGPT Work tier — what it actually includes, how it&#x27;s priced and rate-limited versus Plus/Team.</p><p class="why">Direct context for the @thsottiaux usage-reset post above — read this before anyone expenses a ChatGPT Work seat.</p></div><div class="item"><div class="metric">39 pts · HN</div>
+  <h3><a href="https://kuleshov-group.github.io/blog/blog/2026/how-to-build-a-diffusion-language-model/">How to build a diffusion language model</a></h3>
+  <p>A from-the-ground-up writeup of the actual ingredients behind open diffusion LMs — masked diffusion (MDLM), iterative refinement, variable-length generation via block diffusion, controllable generation, fast samplers — each backed by a real repo out of the Kuleshov Group at Cornell.</p><p class="why">The rare diffusion-LM piece with working code attached (mdlm, bd3lms) rather than just a benchmark table — useful if the local-model story ever needs a non-autoregressive option.</p></div></section><section data-cat="all"><div class="skip">
   <p class="label">Skip this one</p>
-  <h3><a href="https://github.com/HEJustinSun/my-girlfriend-jingtian-latex">HEJustinSun/my-girlfriend-jingtian-latex</a></h3>
-  <p>4,135+ stars and climbing fast on GitHub&#x27;s breakout list today.</p>
-  <p class="verdict">Not a tool. It&#x27;s a LaTeX-typeset personal relationship dispute posted by TRON founder Justin Sun about his ex, turned into a public spectacle in the issue tracker. High star velocity here is celebrity drama, not engineering signal — skip it.</p>
-</div></section><p class="foot">Quiet day for open source specifically: nothing in today&#x27;s GitHub/HN pull cleared the bar for repo_of_day, and the curated-account X query returned no handles to check, so that section is skipped entirely. · Tech Pulse · twice daily</p>
+  <h3><a href="https://github.com/trycompai/crm">trycompai/crm (Comp AI)</a></h3>
+  <p>This week&#x27;s biggest GitHub breakout at ~9,137 stars: an &#x27;agentic-first&#x27; open-source CRM where an agent runs on its own schedule, works its own queue, and books its own follow-ups.</p>
+  <p class="verdict">A dedicated X search for anyone who&#x27;s actually set it up or run it came back with zero mentions — not even a complaint. That&#x27;s a strange gap for something with 9k stars, and it&#x27;s a CRM anyway, orthogonal to this team&#x27;s agent-harness work. Worth revisiting only if someone here actually runs it.</p>
+</div></section><p class="foot">No watchlist releases (llama.cpp, litellm, Claude Code, Codex) landed in the last 3 days, so nothing new there today. The curated-handles pass in x_findings.md came back empty this run. · Tech Pulse · twice daily</p>
 </div><script>
 const chips=[...document.querySelectorAll('.chip')];
 const secs=[...document.querySelectorAll('section[data-cat]')];

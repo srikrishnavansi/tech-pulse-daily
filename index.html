@@ -2,8 +2,8 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tech Pulse — 2026-09-07</title>
-<meta name="description" content="Two local-first memory engines land days apart">
+<title>Tech Pulse — 2026-09-08</title>
+<meta name="description" content="Gemma 4 26B fits in 2GB of RAM">
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,22 +101,20 @@ section[hidden]{display:none}
 </head><body><div class="wrap">
 <div class="masthead">
   <div class="brand"><span><b>Tech Pulse</b></span>
-  <span>PM · 2026-09-07</span></div>
-  <h1>Two local-first memory engines land days apart</h1>
-  <p class="lede">X research hit an exhausted API credit limit and came back empty on all three queries, so there is no trending section today. Everything below is GitHub and blogs: two independent local-first memory engines for coding-agent CLIs surfaced within a day of each other, and vLLM shipped a concrete speculative-decoding guide for AMD GPUs.</p>
+  <span>AM · 2026-09-08</span></div>
+  <h1>Gemma 4 26B fits in 2GB of RAM</h1>
+  <p class="lede">X research came back empty this run — every query hit the same exhausted-credits error — so this one leans on GitHub and HN. The standout is a repo that streams a 26B MoE model&#x27;s experts off SSD to run it on a laptop.</p>
 </div><div class="filters"><button class="chip" data-filter="all" aria-pressed="true">Everything</button><button class="chip" data-filter="repo" aria-pressed="false">Repo</button><button class="chip" data-filter="tools" aria-pressed="false">New tools</button><button class="chip" data-filter="rest" aria-pressed="false">Worth knowing</button></div><section data-cat="repo"><p class="label">Repo of the day</p>
 <div class="lead">
-  <div class="stars">460<small> ★ </small></div>
-  <p class="repo"><a href="https://github.com/tigerless-labs/agent-memory">tigerless-labs/agent-memory</a></p>
-  <p>Local-first, agent-agnostic long-term memory runtime. Memories are plain markdown files — the single source of truth — with a SQLite index beside them that&#x27;s a disposable cache, not a database of record. No LLM client inside the library and no keys to install; judgment for what to write is borrowed from the host agent&#x27;s own CLI. Three read tracks: deterministic MEMORY.md injection at session start, BM25 recall with progressive disclosure, and the plain directory tree reachable with ls and grep. All nine writer/reader pairs across Claude Code, Codex CLI and Hermes are tested to round-trip specifics intact.</p>
-  <p class="tie"><b>Why it matters:</b> This is close to the memory layer worth sketching for the harness — markdown-as-source-of-truth means you can read and hand-edit memory without a special tool, and a disposable index means a bad rebuild never corrupts history. The cross-host read/write testing (Claude Code writes, Codex CLI reads, and back) is the part worth stealing if RealGenie&#x27;s agents ever need to share memory across different harnesses.</p>
-  <button class="copy" data-clone="git clone https://github.com/tigerless-labs/agent-memory.git">Copy git clone</button>
-</div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">launch</span><h3><a href="https://github.com/timgordontg/engrim">timgordontg/engrim</a></h3>
-  <p>Local-first, project-scoped SQLite memory engine aimed at AI coding CLIs — Claude Code, Cursor, Windsurf, Google Antigravity. Curates roughly 4,000 characters of episodic working memory per project, backed by FTS5 lexical search plus vector cosine search in a single ~/.engrim/memory.db, with a provenance layer that tracks which model wrote which memory.</p><p class="why">A second, independently-built answer to the same problem agent-memory is solving, launched the same week. Worth reading both before building anything in-house — the provenance tracking (which model wrote what) matters the moment more than one model touches the same project memory.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">1,722★ · GitHub breakout</div>
-  <h3><a href="https://github.com/Rion-Wu-tech/wechat-intelligence-hub">A CLI-plus-skills pattern for turning chat logs into daily briefs</a></h3>
-  <p>Local-first system that mines WeChat exports through a read-only CLI built entirely on Codex skills: searchable chat history, daily briefings, follow-up and opportunity tracking, no cloud calls.</p><p class="why">The WeChat part doesn&#x27;t apply here, but the shape does — a read-only CLI plus a stack of narrow skills producing a daily brief is the same pattern this digest tool runs on. Worth a skim for how they drew the skill boundaries.</p></div><div class="item"><div class="metric">89pts · HN</div>
-  <h3><a href="https://vllm.ai/blog/2026-08-23-speculative-decoding-amd-gpus">vLLM&#x27;s speculative decoding guide adds AMD-specific drafting methods</a></h3>
-  <p>Practical writeup benchmarking five speculative-drafting approaches — native MTP, Gemma 3 MTP, EAGLE-3, DFlash, DSpark — on MI300X and MI355X via ROCm, with throughput numbers and tuning guidance for each.</p><p class="why">The reference doc if any self-hosted inference work moves onto AMD hardware. The tuning knobs (which drafter for which model shape) matter more than the topline numbers, which are vLLM&#x27;s own benchmarks.</p></div></section><p class="foot">X research came back empty — all three targeted queries (viral engineering sweep, curated-handle check, one repo-specific question) failed on an exhausted API credit limit, not a lack of signal. Treat the missing trending section as unavailable today, not as a quiet day on X. GitHub breakout list was otherwise dominated by gaming and non-engineering repos (a DLSS DLL swapper, a 3D anatomy explorer) that didn&#x27;t clear the bar for this team and are left out entirely. · Tech Pulse · twice daily</p>
+  <div class="stars">6,664<small> ★ </small></div>
+  <p class="repo"><a href="https://github.com/drumih/turbo-fieldfare">drumih/turbo-fieldfare</a></p>
+  <p>Runs the instruction-tuned Gemma 4 26B-A4B MoE model without loading the full 14.3GB into memory: keeps a 1.35GB shared core plus the FP16 KV cache resident, then streams only the experts each token needs from SSD. Swift/Metal runtime, CLI and native Mac app, Apache 2.0, weights pulled separately from the pinned Hugging Face checkpoint. Needs an M-series Mac with 8GB+ RAM; image input wants M2 or newer.</p>
+  <p class="tie"><b>Why it matters:</b> A real local-fallback story for RealGenie&#x27;s agents if the streaming-experts approach holds under sustained load — a 26B model that fits alongside everything else already running on a laptop, no dedicated GPU box required. We couldn&#x27;t get independent practitioner reports on throughput or stability this run (see limits), so treat the RAM claim as repo-stated until someone here spikes it.</p>
+  <button class="copy" data-clone="git clone https://github.com/drumih/turbo-fieldfare.git">Copy git clone</button>
+</div></section><section data-cat="tools"><p class="label">Newest tools</p><div class="tool"><span class="tag">release</span><h3><a href="https://simonwillison.net/2026/Sep/7/llm/">simonwillison/llm 0.35</a></h3>
+  <p>New release of Simon Willison&#x27;s LLM CLI/Python library adds support for OpenAI&#x27;s gpt-6-astra, building on the reasoning-traces, Responses API and server-side tool support from recent versions.</p><p class="why">If you&#x27;re scripting model comparisons or piping agent evals through `llm`, this is a one-command upgrade to reach gpt-6-astra without touching harness code.</p></div></section><section data-cat="rest"><p class="label">Worth knowing</p><div class="item"><div class="metric">35pts · HN</div>
+  <h3><a href="https://danluu.com/agentic-testing/">How well do agents use test/verification techniques?</a></h3>
+  <p>Dan Luu post climbing on HN (not front page yet) asking directly whether coding agents actually use tests and other verification signal well, or just enough to look like they did.</p><p class="why">Bears on how we grade agent output on RealGenie and ReBuddy — worth a read before leaning harder on &#x27;the agent wrote its own tests&#x27; as a quality signal.</p></div></section><p class="foot">X research came back empty today: all three queries (the viral engagement sweep, the curated-handle check, and a targeted ask about turbo-fieldfare&#x27;s RAM claim) failed with the same &#x27;credits exhausted&#x27; API error, so x_trending is skipped rather than guessed. HN and blogs were otherwise thin on agent/tooling news — most of today&#x27;s front page was off-topic (smart-TV privacy, RSA key factoring, VMware licensing). · Tech Pulse · twice daily</p>
 </div><script>
 const chips=[...document.querySelectorAll('.chip')];
 const secs=[...document.querySelectorAll('section[data-cat]')];
